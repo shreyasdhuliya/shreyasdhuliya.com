@@ -14,7 +14,7 @@ const config = {
     databaseURL: 
     projectId: 
     storageBucket: 
-    messagingSenderId: 
+    messagingSenderId:
     appId: 
   };
 
