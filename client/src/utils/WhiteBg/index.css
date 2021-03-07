@@ -1,0 +1,64 @@
+
+
+.profile-info{
+    color:white;
+    font-size: 35px;
+    left:50%;
+    top:150px;
+    position: absolute;
+    transform: translate(-50%);
+    z-index:1;
+    width:200px;
+    justify-items: center;
+    align-items: center;
+  }
+  
+  .info-body {
+      position:absolute;    
+      left: 50%; 
+      height:auto;
+      padding-bottom: 30px; 
+      width:100%;
+      overflow:hidden;
+      transform: translate(-50%);
+      z-index:1;
+    }
+  
+    .info-body-top{
+        padding:40px 15px;
+        width:calc(100% - 80px);      
+      margin-left:auto;
+      margin-right:auto;
+      margin-top:10px;
+      background: #fff;    
+      padding-bottom: 100px; 
+      border-radius:30px; 
+      min-height:700px;
+      box-shadow: 1px 1px 14px 4px rgba(0,0,0,0.27);
+      -webkit-box-shadow: 1px 1px 14px 4px rgba(0,0,0,0.27);
+      -moz-box-shadow: 1px 1px 14px 4px rgba(0,0,0,0.27);
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+  
+    }
+  
+    @media (max-width: 992px ){
+      .info-body-top{
+      width:100%;  
+      }
+      
+    }
+  
+    @keyframes enterehitebg {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  
+  .enter-white-bg{
+      animation-name: enterehitebg;
+      animation-duration: .5s;
+  }
+  
+  
+  
