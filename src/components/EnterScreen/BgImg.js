@@ -31,7 +31,7 @@ const EnterBgImg = ({backgroundImg, getEsBg}) => {
          <Skeleton animation="wave" style={{width:"100vw", position:"fixed", height:"100vh", zIndex:"31"}} />
          :
         <div className="enter-transition" style={{width:"100vw", position:"fixed", height:"100vh", zIndex:"30", top:"0", left:"0" ,
-       backgroundColor:"gray", backgroundImage: `url(${(window.innerWidth > 1200) ? backgroundImg.desktop :  backgroundImg.mobile})`, backgroundPosition:"center", backgroundSize:"cover"}}>               
+       backgroundColor:"#D7C5B3", backgroundImage: `url(${(window.innerWidth > 1200) ? backgroundImg.desktop :  backgroundImg.mobile})`, backgroundPosition:"center", backgroundSize:"cover"}}>               
     
 
        </div>

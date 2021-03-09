@@ -21,49 +21,45 @@ const SocialBtnGroup = ({getEsLinks,socialLinks }) => {
         window.location.href = href
     }
     useEffect(() => {
-        if(Object.keys(socialLinks).length == 0){
+        if(socialLinks.length == 0){
             getEsLinks()
         }
     },[getEsLinks]);
 
+    const returnSocialBtn = (sname) => {
+        if(sname == "facebook")
+            return <FontAwesomeIcon icon={faFacebook} style={{ color: "white", width: "24px", height: "24px" }} />
+        else if(sname == "instagram")
+            return  <FontAwesomeIcon icon={faInstagram} style={{ color: "white", width: "24px", height: "24px" }} /> 
+        else if(sname == "github")
+            return <FontAwesomeIcon icon={faGithub} style={{ color: "white", width: "24px", height: "24px" }} />
+        else if(sname == "behance")
+            return <FontAwesomeIcon icon={faBehance} style={{ color: "white", width: "20px", height: "20px" }} />
+        else 
+            return  <FontAwesomeIcon icon={faLinkedinIn} style={{ color: "white", width: "18px", height: "18px" }} />
+        
+    }
+
     return (
         <div style={{ width: "100vw", height: "100vh", position: "fixed", top: "0", left: "0", zIndex: "31" }}>
-            <Link to="/home" variant="h2" style={{ textDecoration: 'none' }}>
+           { socialLinks.length == 0 ? "" :           
+           <Link to="/home" variant="h2" style={{ textDecoration: 'none' }}>
                 <Button variant="contained" variant="outlined"
                     className="enterbtn">
                     <Typography variant="body1" style={{ letterSpacing: "4px", textTransform: "lowercase", fontSize: "20px", color: "white" }}>Enter</Typography>
                 </Button>
             </Link>
-
+            }
             <div style={{
-                marginTop: '20px', width: "100%", display: "flex", flexDirection: "row", justifyContent: "center",
+                marginTop: '20px',marginLeft:'15px', width: "100%", display: "flex", flexDirection: "row", justifyContent: "center",
                 position: "absolute", bottom: "50px"
             }}>
-                { socialLinks.facebook &&
-                    <IconButton className="sociallinks" onClick={() => redirectOnClick(socialLinks.facebook)}>
-                        <FontAwesomeIcon icon={faFacebook} style={{ color: "white", width: "24px", height: "24px" }} />
-                    </IconButton>
+                { 
+                socialLinks.length == 0 ? "" :
+                   (socialLinks.map((social, i) => ( <IconButton key={social.name+"123"} className={`sociallinks social-btn-${i+1}`} onClick={() => redirectOnClick(social.link)}>
+                        {returnSocialBtn(social.name)}
+                    </IconButton>)))
                 }  
-                { socialLinks.instagram && 
-                    <IconButton className="sociallinks" onClick={() => redirectOnClick(socialLinks.instagram)}>
-                        <FontAwesomeIcon icon={faInstagram} style={{ color: "white", width: "24px", height: "24px" }} />
-                    </IconButton>
-                }
-                { socialLinks.github && 
-                    <IconButton className="sociallinks" onClick={() => redirectOnClick(socialLinks.github)}>
-                        <FontAwesomeIcon icon={faGithub} style={{ color: "white", width: "24px", height: "24px" }} />
-                    </IconButton>
-                }
-                { socialLinks.behance && 
-                    <IconButton className="sociallinks" onClick={() => redirectOnClick(socialLinks.behance)}>
-                        <FontAwesomeIcon icon={faBehance} style={{ color: "white", width: "20px", height: "20px" }} />
-                    </IconButton>
-                }
-                { socialLinks.linkedin && 
-                    <IconButton className="sociallinks" style={{ marginRight: "0" }} onClick={() => redirectOnClick(socialLinks.linkedin)}>
-                        <FontAwesomeIcon icon={faLinkedinIn} style={{ color: "white", width: "18px", height: "18px" }} />
-                    </IconButton>
-                }
             </div>
         </div>
 

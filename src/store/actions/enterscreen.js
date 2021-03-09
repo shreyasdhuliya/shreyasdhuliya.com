@@ -2,7 +2,6 @@
 import {GET_ES_BG, GET_ES_LINKS,SET_ALERT, REMOVE_ALERT } from './types';
 
 import {RDB} from '../../api/firebase';
-import {setAlert} from './alert';
 import {v4 as uuidv4} from 'uuid';
 
 
@@ -36,12 +35,12 @@ export const getEsBg = () =>  dispatch => {
 
 //get social links
 export const getEsLinks = () => dispatch => {
-    RDB.ref('enter/').once('value').then( snap => {
+    RDB.ref('enter/links').once('value').then( snap => {
         let resData = snap.val();
         //if no background image return alert error
         if(resData == null || resData == undefined)
             {
-                resData = {}
+                resData = []
                 const msg = "No social links to display";
                 const alertType = 'error';
                 const idNoBg = uuidv4();
@@ -51,6 +50,21 @@ export const getEsLinks = () => dispatch => {
                     payload:{msg, alertType, idNoBg}
                 })
                 setTimeout(()=> dispatch({type: REMOVE_ALERT, payload: idNoBg}), 5000)
+            }
+            else{
+                //sorting buttons according to display order
+                let keysLi = Object.keys(resData);
+                let sortedList = [];
+                let unsortedList = [];
+                for (let i = 0; i < keysLi.length; i++) {
+                    let newObj = {"displayorder":resData[keysLi[i]]["display-order"], 
+                                 "link":resData[keysLi[i]]["link"],
+                                 "name":resData[keysLi[i]]["name"],  } 
+                   unsortedList.push(newObj);
+                }
+                sortedList = unsortedList.sort(function (a, b) { return a.displayorder - b.displayorder });
+                //initialize payload
+                resData = sortedList;
             }
         dispatch({
             type: GET_ES_LINKS,

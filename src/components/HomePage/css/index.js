@@ -1,15 +1,15 @@
 import React from 'react'
 
 //background
-import WhiteBg from '../../utils/WhiteBg'
-import ShortcutBtns from './ShorcutBtns'
+import WhiteBg from '../../../utils/WhiteBg'
+import ShortcutBtns from '../ShorcutBtns'
 
 //import home css
-import './css/index.css'
+import './index.css'
 
-import HomeTabs from './HomeTabs';
-import ProfilePic from './ProfilePic'
-import SocialMediaBtns from './SocialMediaBtns'
+import HomeTabs from '../HomeTabs';
+import ProfilePic from '../ProfilePic'
+import SocialMediaBtns from '../SocialMediaBtns'
 
 
 function Home() {  
@@ -21,13 +21,13 @@ function Home() {
             <ProfilePic />
         <WhiteBg  top={"320px"}>
           {/*Name ----------------------------------------------------------------------------------*/}
-          <h3 className="name--h3 social-btn-2">
+          <h3 className="name--h3">
                 Shreyas Dhuliya
           </h3>
           {/* DEsignation -------------------------------------------------------------------------- */}
-        <h5 className="social-btn-3" style={{marginTop:'10px', width:"100%", display:"flex", justifyContent:"center", color:"gray"}}>
+        <h6 style={{marginTop:'10px', width:"100%", display:"flex", justifyContent:"center", color:"gray"}}>
                 Developer / Designer
-        </h5>
+        </h6>
         {/* Social media links---------------------------------------------------------------------- */}
         <SocialMediaBtns/>
 

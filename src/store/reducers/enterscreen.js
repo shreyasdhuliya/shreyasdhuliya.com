@@ -3,7 +3,7 @@ import { GET_ES_BG, GET_ES_LINKS } from "../actions/types";
 
 const initialState = {
     backgroundImg: {},
-    socialLinks:{}
+    socialLinks:[]
 }
 
 export default function(state = initialState, action){

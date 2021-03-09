@@ -69,7 +69,7 @@ export default function DesktopNav() {
       
     return(
         <Container maxWidth="lg" className="nav--desktop">
-        <div className={menuWhite ? "navbar-container nav-whitebg" :"navbar-container"}>
+        <div className={menuWhite ? "navbar-container nav-whitebg" :"navbar-container nav-black-op"}>
           <div className="navbar-items">
             <Tooltip title="Home">
               <Link to="/" className={menuWhite ? "nav-color--gray" :"nav-color--white"} ><h2 class={`h2--margin ${menuWhite ? "h2-margin" :""}`}> Shrey </h2></Link>
