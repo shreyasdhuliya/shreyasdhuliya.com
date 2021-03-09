@@ -1,6 +1,7 @@
 
 import './index.css'
-import {useEffect} from 'react'
+import {useEffect} from 'react';
+import Tooltip from '@material-ui/core/Tooltip';
 
 export default function RightStepper(props){
 
@@ -25,7 +26,7 @@ export default function RightStepper(props){
     
    
 
-    function resetSectionTopList(onload = false) {
+    function resetSectionTopList() {
                 // get offset of all sections
         //desc, basic info, favourite, hobbies, connections 
         let offsetTopList = []
@@ -37,6 +38,7 @@ export default function RightStepper(props){
 
 
         let testArr = [] 
+        sectionOffsetList = [];
 
         offsetTopList.map((item, index) => {           
             sectionOffsetList.push(
@@ -49,10 +51,12 @@ export default function RightStepper(props){
 
         //console.log("resiize", sectionOffsetList)
 
-        if(onload){
-                console.log("true***************************")
+                //clear existing stepper
+                document.getElementById("right-stepper").innerHTML = "";
+                console.log("yes")
+
                 //add new right stepper
-                let rightStepperHTML = '  '
+                let rightStepperHTML = ''
 
                 sectionOffsetList.map((item) => {
                     rightStepperHTML = rightStepperHTML +  
@@ -64,13 +68,14 @@ export default function RightStepper(props){
                 //console.log(rightStepperHTML)
              document.getElementById("right-stepper").innerHTML = rightStepperHTML;
 
+             rightStepperHTML = ''
+
              let  dotList =  document.getElementsByClassName("stepper-dot--divcon")
              for (let i = 0; i< dotList.length ; i++){
                 dotList[i].addEventListener('click', scrollToTop)
                 dotList[i].offsetTopVal = sectionOffsetList[i].offsetTop;
              }
 
-            }
     }
 
     
@@ -97,7 +102,7 @@ export default function RightStepper(props){
 
         //console.log("bind about" );
 
-        resetSectionTopList(true);
+        resetSectionTopList();
 
         window.addEventListener("scroll" , checkActiveSection);
         window.addEventListener("resize" , resetSectionTopList)

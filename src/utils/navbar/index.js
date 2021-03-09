@@ -8,7 +8,7 @@ import {
 
 
 //navbar  imports
-import HomeS from '../../modules/home'
+import Home from '../../modules/home'
 import Portfolio from '../../modules/portfolio'
 import Contact from '../../modules/contact'
 import About from '../../modules/about'

@@ -1,22 +1,22 @@
-
+import React, {useState,useEffect} from 'react';
 
 //background
 import WhiteBackground from '../../utils/whitebackground'
-import BasicInfo from './basicinfo';
-import ProfilePromt from '../../utils/profilepromt'
-import Favorite from './favmusic'
+import BasicInfo from './basicinfo.js';
+
+import Favorite from './favmusic';
+import Description from './description';
+import TopLeftImg from './topleftimage'
 
 //import material ui components
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid';
-import Tooltip from '@material-ui/core/Tooltip';
-
-
-//get images
-import img2 from './basicinfo/images/tabpanel1/studio-2.76e2987e.jpg'
 
 //utils
-import RightStepper from '../../utils/rightstepper' 
+import RightStepper from '../../utils/rightstepper'
+
+//firebase
+import {RDB} from '../../firebase'
 
 function About() {
 
@@ -28,9 +28,17 @@ function About() {
         {id:"aboutme-connections", tooltip:"Connections" },
                           ]
 
+    const [aboutme, setAboutMe] = useState({})
+
+    useEffect(() => {
+   
+        RDB.ref('aboutme').once('value', snap => {            
+                console.log(snap.val())
+                setAboutMe(snap.val());
+        })
+      },[]);
     
     return (
-
         <>
 
         <RightStepper detail={rightStepperInfo} />         
@@ -43,24 +51,18 @@ function About() {
        <Grid container  style={{maxWidth:"700px"}}  >
           
                 {/*About  me desc */}
-                <Grid id="aboutme-description" item xs={12} style={{textAlign:"center", padding:"10px"}}><Typography> hello description here </Typography></Grid>
+                <Grid id="aboutme-description" item xs={12} style={{textAlign:"center", padding:"10px"}}>
+                    <Description desc={aboutme["description"]}/>
+                </Grid>
 
                 {/* Left image*/}
                 <Grid   item xs={12} sm={12}  md={6} style={{padding:"10px"}}>
-                      <img   src={img2} style={{width:"100%"}}/>
+                      <TopLeftImg imgs={aboutme["topleftimg"]} />
                   </Grid>
+                  
                 {/* |imge | Basic info|*/}
                 <Grid  id="aboutme-basicinfo" item  xs={12} item sm={12} md={6}  style={{padding:"10px"}}>
-                                  <Typography variant="h5" style={{margin:"0", marginTop:"0px"}}>Shreyas Dhuliya, 28</Typography>
-                                  <Typography variant="body1" style={{fontSize: "12px" }}>Software Developer @ Hinduja Tech, Bengaluru</Typography>
-
-                                  <Typography variant="h6" style={{marginTop:"20px", marginBottom:"10px"}}>Basic Info</Typography>
-
-                                  {/* chips basic info */}
-                                  <BasicInfo />   
-
-                                  {/* |prompt|*/}
-                                  <ProfilePromt height="115px" topLabel="The quickest way to my heart..." btmLabel="Handmade Gifts"/>
+                         <BasicInfo  info={aboutme["basic-info"]} />   
                   </Grid>
 
                   {/*Favourite */}
@@ -68,7 +70,7 @@ function About() {
                       <Typography variant="h5" style={{margin:"0", marginTop:"30px"}}>Favourite</Typography>
                   </Grid>
                   <Grid container item xs={12}>
-                      <Favorite />
+                      <Favorite info={aboutme["favourite"]} />
                   </Grid>
 
                   {/*Hobbies */}

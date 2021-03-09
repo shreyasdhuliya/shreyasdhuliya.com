@@ -8,3 +8,7 @@ body{
     outline:0 !important;
     border: 0 !important
 }
+
+.dis-none-imp{
+    display:none !important;
+}
